@@ -74,14 +74,17 @@
         <span class="sectionTitle">Syntax</span>
         <p>Protocols are defined in files ending in the .proto suffix.  An example protocol definition is:</p>
         <div class="varkfile">package example
+
 protocol ExampleProtocol {
   function aFunction() : String
 }
         </div>
         <p>This protocol can now be used like so:</p>
         <div class="varkfile">var proto : example.ExampleProtocol
+
 proto = new SomeClassThatHasAFunctionOnIt()
 proto.aFunction()
+
 proto = new SomeOtherUnreleatedClassThatHasAFunctionOnIt()
 proto.aFunction()</div>
         <p>The two classes above, which both have an aFunction():String method defined, both satisfy the protocol definition and, thus, can be assigned to the protocol variable.
