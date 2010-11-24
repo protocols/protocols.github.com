@@ -32,7 +32,8 @@
          font-size: 20pt;
        }
        .content {
-         padding-left: 240px;
+         padding-top: 8px;
+         padding-left: 200px;
          color: black;
          font-size: 12pt;
        }
@@ -68,8 +69,8 @@
       </div>
       <div class="content">
         <span class="sectionTitle">Overview</span>
-        <p>Protocols provide a way to achieve <a href="http://en.wikipedia.org/wiki/Duck_typing">duck typing</a> in <a href="http://gosu-lang.org">GOsu</a>
-        without sacrificing static verification.  This functionality is achieved by introducing Protocol Types into Gosu via <a href="http://guidewiredevelopment.wordpress.com/2010/11/18/gosus-secret-sauce-the-open-type-system/"></a>The Open Type System.</p>
+        <p>Protocols provide a way to achieve <a href="http://en.wikipedia.org/wiki/Duck_typing">duck typing</a> in <a href="http://gosu-lang.org">Gosu</a>
+        without sacrificing static verification.  This functionality is achieved by introducing Protocol Types into Gosu via <a href="http://guidewiredevelopment.wordpress.com/2010/11/18/gosus-secret-sauce-the-open-type-system/">The Open Type System</a>.</p>
         <span class="sectionTitle">Syntax</span>
         <p>Protocols are defined in files ending in the .proto suffix.  An example protocol definition is:</p>
         <div class="varkfile">package example
@@ -77,17 +78,16 @@ protocol ExampleProtocol {
   function aFunction() : String
 }
         </div>
-        <p>This protocol can now be used</p
+        <p>This protocol can now be used like so:</p>
         <div class="varkfile">var proto : example.ExampleProtocol
 proto = new SomeClassThatHasAFunctionOnIt()
 proto.aFunction()
 proto = new SomeOtherUnreleatedClassThatHasAFunctionOnIt()
-proto.aFunction()
-        </div>
+proto.aFunction()</div>
         <p>The two classes above, which both have an aFunction():String method defined, both satisfy the protocol definition and, thus, can be assigned to the protocol variable.
         This is despite the fact that the two types are totally unrelated.  If either class didn't have aFunction():String defined
         then the code above would have a compilation error: the Protocol type verifies that the other type conforms to it at the
-        point of assignment.
+        point of assignment.</p>
       </div>
     </div>
   </body> 
