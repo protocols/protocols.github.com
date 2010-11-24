@@ -1,0 +1,94 @@
+
+<html> 
+  <head> 
+    <title>Protocols For Gosu</title> 
+    <style TYPE="text/css">
+       <!--
+       body { font-family: Helvetica,sans-serif;
+              background: white;
+              color: #888888;
+              margin: 16px 16px 16px 16px;
+              }
+       .header {
+         width: 100%;
+         border-bottom: 1px solid;
+       }
+       .title {
+         font-size: 32pt;
+       }
+       .tagline {
+         font-size: 12pt;
+         font-style: italic;
+         padding: 16px;
+       }
+       .links {
+         height: 100%;
+         padding: 0 16px 0 0;
+         font-size: 14pt;
+         float: left;
+         border-right: 1px solid;
+       }
+       .sectionTitle {
+         font-size: 20pt;
+       }
+       .content {
+         padding-left: 240px;
+         color: black;
+         font-size: 12pt;
+       }
+       .varkfile {
+         white-space: pre;
+         font-family: Courier,monospace;
+         font-size: 10pt;
+         margin: 0;
+         padding: 8px;
+         border: 1px solid #bbbbbb;
+         background-color: #eeeeee;
+       }
+       a:link { color: #ff0000; }
+       a:visited { color: #ff8080; }
+       a:active { color: #a05050; }
+        -->
+     </style>
+  </head> 
+  <body> 
+    <div class="header"><span class="title">Protocols</span><span class="tagline">Static Duck Typing</span></div>
+    <div>
+      <div class="links">
+        <ul> 
+          <li>Downloads:</li> 
+          <ul> 
+            <li>TBD</li> 
+          </ul> 
+          <li><a href="http://github.com/protocols/protocols">Source</a></li> 
+          <li><a href="http://github.com/protocols/protocols/wiki">Documentation</a></li> 
+          <li><a href="http://github.com/protocols/protocols/issues">Issues</a></li> 
+          <li><a href="http://www.apache.org/licenses/LICENSE-2.0.html">License</a></li> 
+        </ul> 
+      </div>
+      <div class="content">
+        <span class="sectionTitle">Overview</span>
+        <p>Protocols provide a way to achieve <a href="http://en.wikipedia.org/wiki/Duck_typing">duck typing</a> in <a href="http://gosu-lang.org">GOsu</a>
+        without sacrificing static verification.  This functionality is achieved by introducing Protocol Types into Gosu via <a href="http://guidewiredevelopment.wordpress.com/2010/11/18/gosus-secret-sauce-the-open-type-system/"></a>The Open Type System.</p>
+        <span class="sectionTitle">Syntax</span>
+        <p>Protocols are defined in files ending in the .proto suffix.  An example protocol definition is:</p>
+        <div class="varkfile">package example
+protocol ExampleProtocol {
+  function aFunction() : String
+}
+        </div>
+        <p>This protocol can now be used</p
+        <div class="varkfile">var proto : example.ExampleProtocol
+proto = new SomeClassThatHasAFunctionOnIt()
+proto.aFunction()
+proto = new SomeOtherUnreleatedClassThatHasAFunctionOnIt()
+proto.aFunction()
+        </div>
+        <p>The two classes above, which both have an aFunction():String method defined, both satisfy the protocol definition and, thus, can be assigned to the protocol variable.
+        This is despite the fact that the two types are totally unrelated.  If either class didn't have aFunction():String defined
+        then the code above would have a compilation error: the Protocol type verifies that the other type conforms to it at the
+        point of assignment.
+      </div>
+    </div>
+  </body> 
+</html> 
